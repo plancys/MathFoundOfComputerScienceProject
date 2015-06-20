@@ -17,6 +17,11 @@ public class Graph {
         script.append("graph {").append(NEW_LINE);
     }
 
+    public Graph(boolean adjacencyMatrix[][]) {
+        this();
+        this.addEdgesFromAdjacjencyMatrix(adjacencyMatrix);
+    }
+
     public String getScript() {
         return script.append("}").toString();
     }
