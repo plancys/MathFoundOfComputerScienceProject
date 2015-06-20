@@ -8,7 +8,7 @@ public class GraphTest {
 
     @Test
     public void blabla() throws Exception {
-        graph = new Graph();
+        graph = Graph.createRandomGraph(3);
         boolean[][] matrix = new boolean[][]{
                 {false, true, true},
                 {true, false, true},

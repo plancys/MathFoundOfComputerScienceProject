@@ -1,6 +1,8 @@
 package com.kalandyk.graph;
 
-public class Edge {
+import java.util.Objects;
+
+public class Edge implements Comparable<Edge> {
 
     private int v;
     private int u;
@@ -21,11 +23,12 @@ public class Edge {
     }
 
     public static Edge createHamiltonianEdge(int v, int u, int number) {
-        return new Edge(v, u, number);
+        return new Edge(Math.min(v, u), Math.max(v, u), number);
     }
 
     public static Edge createEdge(int v, int u) {
-        return new Edge(v, u);
+
+        return new Edge(Math.min(v, u), Math.max(v, u));
     }
 
 
@@ -59,5 +62,25 @@ public class Edge {
 
     public void setIsHamiltonian(boolean isHamiltonian) {
         this.isHamiltonian = isHamiltonian;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Edge edge = (Edge) o;
+        return Objects.equals(v, edge.v) &&
+                Objects.equals(u, edge.u);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(v, u);
+    }
+
+    @Override
+    public int compareTo(Edge edge) {
+        int compare = Integer.compare(v, edge.v);
+        return compare != 0 ? compare : Integer.compare(u, edge.u);
     }
 }

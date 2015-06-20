@@ -1,14 +1,17 @@
 package com.kalandyk;
 
 import com.kalandyk.graph.Graph;
-import com.kalandyk.graph.GraphUtil;
+import com.kalandyk.graph.GraphPrinter;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.io.PrintWriter;
+import java.io.File;
+
+import static com.kalandyk.graph.GraphType.SOURCE;
 
 public class Application {
     private MainView mainView;
+    private Graph graph;
 
     public Application() {
         EventQueue.invokeLater(() -> {
@@ -30,17 +33,18 @@ public class Application {
     }
 
     public void handleAction(ActionEvent e) throws Exception {
-        if (e.getActionCommand().equals(MainView.GENERATE_LABEL)) {
-            int vertexNumber = mainView.getVertexNumber();
-            boolean[][] adjacencyMatrix = GraphUtil.generateRandomGraph(vertexNumber);
-            Graph graph = new Graph(adjacencyMatrix);
-            String graphScript = graph.getScript();
-            PrintWriter one = new PrintWriter("one.dot", "UTF-8");
-            one.print(graphScript);
-            one.close();
-            Runtime.getRuntime().exec("dot -T png -O  " + "one.dot");
-            Thread.sleep(500);
-            mainView.setGeneratedGraph("one.dot.png");
+        String command = e.getActionCommand();
+        if (command.equals(MainView.GENERATE_LABEL)) {
+            graph = Graph.createRandomGraph(mainView.getVertexNumber());
+            GraphPrinter.printGraph(graph, SOURCE.name());
+            mainView.setGeneratedGraph(SOURCE.getImageFileName());
+        } else if (command.equals(MainView.COMPUTE_LABEL)) {
+            if (graph.getHamiltonianCycle()) {
+                GraphPrinter.printGraph(graph, SOURCE.name());
+                mainView.setGeneratedGraph(SOURCE.getImageFileName());
+            }
+        } else {
+            Desktop.getDesktop().open(new File(""));
         }
     }
 

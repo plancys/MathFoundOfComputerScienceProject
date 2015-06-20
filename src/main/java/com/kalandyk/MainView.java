@@ -43,6 +43,8 @@ public class MainView extends JFrame implements ActionListener {
         container.add(computedGraphView, BorderLayout.EAST);
         generateButton.addActionListener(this);
         openImageButton = new Button(OPERN_EXTERNALY);
+        openImageButton.addActionListener(this);
+        computeButton.addActionListener(this);
         container.add(openImageButton, BorderLayout.PAGE_END);
     }
 
