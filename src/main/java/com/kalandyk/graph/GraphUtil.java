@@ -18,7 +18,17 @@ public class GraphUtil {
                     adjacenecyMatrix[i][j] = true;
                 }
             }
+            if (isIsolatedNode(adjacenecyMatrix[i])) {
+                adjacenecyMatrix[i][Math.abs(random.nextInt() % vertexCount)] = true;
+            }
         }
         return adjacenecyMatrix;
+    }
+
+    private static boolean isIsolatedNode(boolean[] row) {
+        for (boolean edgeExist : row) {
+            if (edgeExist) return false;
+        }
+        return true;
     }
 }

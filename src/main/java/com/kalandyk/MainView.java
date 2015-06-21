@@ -15,6 +15,7 @@ public class MainView extends JFrame implements ActionListener {
     public static final String NUMBER_OF_VERTICLES_LABEL = "Liczba wierzchołków:";
     public static final String GENERATED_GRAPH_FILEMANE = "one.dot.png";
     public static final String OPERN_EXTERNALY = "Otwórz w zewnętrzynym programie";
+    public static final String HAMILTON_DOESNT_EXIST_TEXT = "CYKL HAMILTONA W TYM GRAFIE NIE ISTNIEJE!";
 
     private final BorderLayout borderLayout;
     private final Container container;
@@ -25,6 +26,7 @@ public class MainView extends JFrame implements ActionListener {
     private JSpinner vertexNumberSpinner;
     private JLabel generatedGraphView;
     private JLabel computedGraphView;
+    private JLabel noHamiltonianCycle;
 
     public MainView() {
         initFrame();
@@ -46,6 +48,11 @@ public class MainView extends JFrame implements ActionListener {
         openImageButton.addActionListener(this);
         computeButton.addActionListener(this);
         container.add(openImageButton, BorderLayout.PAGE_END);
+        noHamiltonianCycle = new JLabel(HAMILTON_DOESNT_EXIST_TEXT);
+        noHamiltonianCycle.setForeground(Color.RED);
+        noHamiltonianCycle.setFont(new Font("Serif", Font.BOLD, 16));
+        container.add(noHamiltonianCycle, BorderLayout.EAST);
+        noHamiltonianCycle.setVisible(false);
     }
 
     private void initFrame() {
@@ -83,5 +90,9 @@ public class MainView extends JFrame implements ActionListener {
 
     public int getVertexNumber() {
         return (int) vertexNumberSpinner.getModel().getValue();
+    }
+
+    public void showMessage(boolean showMessage) {
+        noHamiltonianCycle.setVisible(showMessage);
     }
 }

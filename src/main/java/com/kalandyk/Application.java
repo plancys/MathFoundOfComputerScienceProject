@@ -40,10 +40,13 @@ public class Application {
         if (command.equals(MainView.GENERATE_LABEL)) {
             graph = Graph.createRandomGraph(mainView.getVertexNumber());
             applyGraphToView(SOURCE);
+            mainView.showMessage(false);
         } else if (command.equals(MainView.COMPUTE_LABEL)) {
             boolean isHamiltonianCycle = graph.existHamiltonianCycle();
             if (isHamiltonianCycle) {
                 applyGraphToView(SOLVED);
+            } else {
+                mainView.showMessage(true);
             }
         } else {
             Desktop.getDesktop().open(new File(currentGraph.getImageFileName()));

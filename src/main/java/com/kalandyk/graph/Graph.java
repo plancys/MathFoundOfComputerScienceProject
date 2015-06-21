@@ -63,9 +63,7 @@ public class Graph {
     }
 
     public String addEdgeWithValue(int u, int v, int number) {
-        String edge = String.format("%d -- %d [label = \"%d\" color=red]", u, v, number);
-//        script.append(edge).append(NEW_LINE);
-        return edge;
+        return String.format("%d -- %d [label = \"%d\" color=red]", u, v, number);
     }
 
     public void addEdgesFromAdjacjencyMatrix(boolean[][] matrix) {
