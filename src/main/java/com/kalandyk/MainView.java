@@ -48,11 +48,7 @@ public class MainView extends JFrame implements ActionListener {
         openImageButton.addActionListener(this);
         computeButton.addActionListener(this);
         container.add(openImageButton, BorderLayout.PAGE_END);
-        noHamiltonianCycle = new JLabel(HAMILTON_DOESNT_EXIST_TEXT);
-        noHamiltonianCycle.setForeground(Color.RED);
-        noHamiltonianCycle.setFont(new Font("Serif", Font.BOLD, 16));
-        container.add(noHamiltonianCycle, BorderLayout.EAST);
-        noHamiltonianCycle.setVisible(false);
+
     }
 
     private void initFrame() {
@@ -72,6 +68,11 @@ public class MainView extends JFrame implements ActionListener {
         menu.add(generateButton);
         computeButton = new Button(COMPUTE_LABEL);
         menu.add(computeButton);
+        noHamiltonianCycle = new JLabel(HAMILTON_DOESNT_EXIST_TEXT);
+        noHamiltonianCycle.setForeground(Color.RED);
+        noHamiltonianCycle.setFont(new Font("Serif", Font.BOLD, 16));
+        noHamiltonianCycle.setVisible(false);
+        menu.add(noHamiltonianCycle);
         return menu;
     }
 
@@ -92,7 +93,12 @@ public class MainView extends JFrame implements ActionListener {
         return (int) vertexNumberSpinner.getModel().getValue();
     }
 
-    public void showMessage(boolean showMessage) {
-        noHamiltonianCycle.setVisible(showMessage);
+    public void showMessage(String message) {
+        noHamiltonianCycle.setText(message);
+        noHamiltonianCycle.setVisible(true);
+    }
+
+    public void hideMessage() {
+        noHamiltonianCycle.setVisible(false);
     }
 }
