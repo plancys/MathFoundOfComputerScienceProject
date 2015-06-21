@@ -5,3 +5,8 @@
 
 ## How to run it
 - Figure it out by yourself
+
+# Screens
+![Screen](screen1.png)
+
+![Screen](screen2.png)
