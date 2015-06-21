@@ -79,7 +79,7 @@ public class Graph {
         });
     }
 
-    public boolean getHamiltonianCycle() {
+    public boolean existHamiltonianCycle() {
         List<Integer> vector = new ArrayList<>();
         IntStream.range(0, numberOfNodes).forEach(t -> vector.add(t));
         ICombinatoricsVector<Integer> originalVector = Factory.createVector(vector);
